@@ -11,12 +11,16 @@ def scrape_quotes():
 def write_to_file():
     quotes = scrape_quotes()
     with open("output.html", "w", encoding="utf-8") as f:
-        f.write("<h1>Scraped Quotes</h1>\n<ul>")
+        f.write("<!DOCTYPE html>\n<html lang='en'>\n<head>\n")
+        f.write("<meta charset='UTF-8'>\n<title>Scraped Quotes</title>\n</head>\n<body>\n")
+        f.write("<h1>Scraped Quotes</h1>\n<ul>\n")
         for q in quotes:
-            f.write(f"<li>{q}</li>")
-        f.write("</ul>")
+            f.write(f"<li>{q}</li>\n")
+        f.write("</ul>\n</body>\n</html>")
 
 if __name__ == "__main__":
+    print("Scraping quotes from http://quotes.toscrape.com ...\n")
     for q in scrape_quotes():
         print(q)
-    write_to_file()    
+    print("\nWriting quotes to output.html ...")
+    write_to_file()
