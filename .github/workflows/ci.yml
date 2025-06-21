@@ -27,17 +27,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Step 4: Run tests using pytest
+    # ✅ Step 4: Run tests with fixed PYTHONPATH
     - name: Run Unit Tests
       run: |
-        pytest
+        PYTHONPATH=$PWD pytest
 
-    # Step 5: Run scraper to generate HTML file
+    # Step 5: Run scraper to generate output.html
     - name: Run Web Scraper to generate output.html
       run: |
         python scraper/main.py
 
-    # Step 6: Commit and push output.html to repo
+    # Step 6: Commit and push output.html to the repo
     - name: Commit and push output.html
       run: |
         git config --global user.name "github-actions[bot]"
